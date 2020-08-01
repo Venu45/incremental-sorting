@@ -1,0 +1,59 @@
+Create a class in C++ to represent Students. This class should also support the functionality to compare two Students based on the given constraints.
+
+The class should have the following attributes. ID (Unique for a student) Scores in five subjects(No two students will have the same set of scores in all five subjects). Skill value (Unique for a student). Any other attributes of your choice.
+
+The condition for comparing arbitrary students A and B is: Rank(A) < Rank(B) if (A)>(B) Rank(A) < Rank(B) if (A)==(B) and (A)> (B) for i=1 to 4 where (A) denotes marks of student A in subject i. Rank is defined as the position of a student in the sorted order using the above condition. It is indexed from 1.
+
+There can be 5 types of operations:
+
+ADD: Add a student.
+FIND: Find the difference in ranks between two students given their respective IDs.
+COUNT: Given a student ID, find the number of students with absolute difference in skill values more than d. i.e. count(|val_i - val_id| > d) ∀ i.
+PRINT: Print the current list of student IDs in the order of their ranks.
+As and when a new student is added it is expected that all of them are to be in sorted order i.e. positioning them in their appropriate rank.
+
+You need to choose an appropriate data structure to perform operations efficiently.
+
+Input Format
+
+<ADD><space><studentID><space><Marks1><space><Marks2><space><Marks3><space><Marks4 <space><Marks5><space><SkillValue>
+<FIND><space><studentID_1><space><studentID_2>
+<COUNT><space><studentID><space><d_value>
+<PRINT>
+Constraints
+
+Number of ADD operations ≤ 
+Number of PRINT operations ≤ 
+Number of FIND+COUNT operations ≤ 
+Marks in each subject (M) 0 ≤ M ≤100
+Skill value (s) 1 ≤ s ≤ 
+d_value (d) 1 ≤ d ≤ 
+Output Format
+
+Output of every query should be printed on a separate line.
+ADD: nothing to be printed. (no newline as well).
+FIND: output is an integer.
+COUNT: output is an integer.
+PRINT: output is a space separated list of student IDs.
+Sample Input 0
+
+ADD 1 28 15 72 79 53 880704511
+ADD 2 9 27 78 89 81 133736473
+ADD 3 94 2 98 99 43 102803388
+PRINT
+ADD 4 92 61 56 39 96 154547114
+ADD 5 19 73 39 13 88 138195161
+ADD 6 33 68 17 69 73 749942762
+PRINT
+FIND 2 3
+COUNT 5 7006739
+ADD 7 58 64 7 12 3 587319490
+ADD 9 96 89 58 43 49 550217891
+PRINT
+Sample Output 0
+
+3 1 2 
+3 4 6 1 5 2 
+5
+4
+9 3 4 7 6 1 5 2 
