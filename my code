@@ -1,0 +1,134 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class students{
+    public:
+        int id;
+        int m[5];
+        int skill_value;
+    
+        students(int x,int a[],int y){
+            id = x;
+            for(int ii = 0;ii<5;ii++){
+                m[ii] = a[ii];
+            }
+            skill_value = y;
+        }
+};
+
+int fun(students one,students two){
+    int ii=0;
+    while(one.m[ii] == two.m[ii])ii++;
+    if(one.m[ii]>two.m[ii])return 1;
+    return 0;
+}
+
+int main() {
+    string str;
+    int x,y,a[5],ii,jj;
+    int id1,id2;
+    int subid, marks,d;
+    int size,count;
+    int num;
+    count = 0;
+  //  cin>>str;
+    vector<students > v;
+ //   set<int, greater<int> >skill_table;
+ //   set<students, fun>rank_table;
+    while(cin>>str){
+        if(str == "ADD"){
+            cin>>x>>a[0]>>a[1]>>a[2]>>a[3]>>a[4]>>y;
+            students one(students(x,a,y));
+            count = 0;int insert = 0;
+            if(v.size() == 0)v.push_back(one);
+            else{
+                for(ii = 0;ii<v.size();ii++){
+                  //  cout<<fun(v[ii],one)<<" 45"<<endl;
+                    if(fun(v[ii],one) == 1)count++;
+                    else{
+                      //  cout<<count<<" 23"<<endl;
+                        v.insert(v.begin()+count,one);
+                        insert = 1;break;
+                    }
+                }
+              //  cout<<ii<<" "<<insert<<endl;
+                if(insert == 0)v.push_back(one);
+                              
+            }
+         //   v.push_back(one);
+          //  rank_table.insert(one);
+         //   skill_table.insert(y);
+         //   continue;
+        }
+        else if(str == "FIND"){
+            cin>>id1>>id2;
+            int rank = 1;
+            int rank1,rank2;
+            for (ii=0;ii<v.size();ii++){
+                if(v[ii].id == id1){
+                    rank1 = rank;
+                }
+                else if(v[ii].id == id2){
+                    rank2 = rank;
+                }
+                rank++;
+            }
+            rank = rank1 - rank2;
+            if(rank>0)cout<<rank<<endl;
+            else cout<<-rank<<endl;
+        //    continue;
+        }
+     /*   else if(str == "UPDATE"){
+            cin>>id1>>subid>>marks;
+            set<students, fun> :: iterator itr;
+            for (itr = rank_table.begin(); itr != rank_table.end(); ++itr){
+                if (itr->id == id1){
+                    itr->m[subid-1] = marks;
+                    x = id1;
+                    y = itr->skill_value;
+                    a[0] = itr->m[0];
+                    a[1] = itr->m[1];
+                    a[2] = itr->m[2];
+                    a[3] = itr->m[3];
+                    a[4] = itr->m[4];
+                    erase(itr);
+                    student two(students(x,a,y));
+                    insert(two);
+                    break;
+                }
+            }
+        } */
+        else if(str == "COUNT"){
+            cin>>id1>>d;
+            int skill;
+            int num = 0;
+            for(auto x : v){
+                if(x.id == id1)skill = x.skill_value;
+            }
+            for(auto x : v){
+                if((skill-(x.skill_value))>d || ((x.skill_value)-skill) > d )num++;
+            }
+          //  cout<<"count"<<endl;
+            cout<<num<<endl;
+         //   cout<<0<<endl;
+         //   continue;
+        }
+        else {
+          //  cout<<v.size()<<endl;
+         //   cout<<"print start"<<endl;
+            for (ii = 0;ii<v.size();ii++){
+                cout<<v[ii].id<<" ";
+            }
+            cout<<endl;
+        }
+    }
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
